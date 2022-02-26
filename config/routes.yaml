@@ -1,7 +1,11 @@
-controllers:
-    resource: ../src/Controller/
+blog:
+    resource: '../src/Controller/Blog'
+    prefix: '/{_locale}/blog'
+    name_prefix: 'blog_'
     type: annotation
+    trailing_slash_on_root: false
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
 
-kernel:
-    resource: ../src/Kernel.php
-    type: annotation

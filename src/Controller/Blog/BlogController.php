@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Blog;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BlogController extends  AbstractController
 {
-    #[Route('/blog', name: 'blog_name')]
-    public function list(Request $request)
+    #[Route('/{page<\d+>?1}', name: 'index')]
+    public function list(int $page)
     {
-        return $this->render('blog/list.html.twig');
+        return $this->render('blog/list.html.twig', [
+            'page' => $page,
+        ]);
     }
 
-    #[Route('/blog/{slug}', name: 'blog_show')]
+    #[Route('/{slug}', name: 'show')]
     public function show(string $slug)
     {
         return $this->render('blog/show.html.twig',[
